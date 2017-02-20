@@ -1,10 +1,13 @@
 <?php
 define('SITE_TITLE', 'Le jeu du pendu');
+define('SOURCE_NAME', 'data/words.txt');
+define('MAX_TRIALS', 8);
 
 $sView = '_main.php';
 $bDead = false;
 $bWin = false;
 $sTriedLetters = '';
+$remainingTrials = MAX_TRIALS;
 $aLetters = [
     'a' => true,
     'b' => true,

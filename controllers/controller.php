@@ -10,10 +10,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-if(!$bDead) {
+if(!$bDead && !$bWin) {
     $sView = '_form.php';
-}else {
+}else if($bDead && !$bWin) {
     $sView = '_gameOver.php';
+}else {
+    $sView = '_gameWin.php';
 }
 
 include('layout.php');
