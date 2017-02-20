@@ -9,6 +9,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $aLetters[str_split($sTriedLetters)[$i]] = false;
         }
         $sWord = $_POST['word'];
+        $iWordLength = $_POST['lenght'];
+        $sHiddenWord = $_POST['hidden_word'];
+        $iRemainingTrials = $_POST['trials'];
     }
 }
 

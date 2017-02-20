@@ -13,6 +13,10 @@
         </select>
         <input type="hidden" name="letters" value="<?= $sTriedLetters; ?>">
         <input type="hidden" name="word" value="<?= $sWord; ?>">
+        <input type="hidden" name="lenght" value="<?= $iWordLength; ?>">
+        <input type="hidden" name="hidden_word" value="<?= $sHiddenWord; ?>">
+        <input type="hidden" name="trials" value="<?= $iRemainingTrials; ?>">
+
         <input type="submit" value="Esseyer cette lettre">
     </fieldset>
 </form>

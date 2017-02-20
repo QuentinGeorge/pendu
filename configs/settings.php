@@ -5,6 +5,7 @@ define('MAX_TRIALS', 8);
 
 $sView = '_main.php';
 $sWord = '';
+$sHiddenWord = '';
 $sTriedLetters = '';
 $bDead = false;
 $bWin = false;
@@ -12,3 +13,4 @@ $aWords = [];
 $aLetters = [];
 $iIndexWord = 0;
 $iRemainingTrials = MAX_TRIALS;
+$iWordLength = 0;

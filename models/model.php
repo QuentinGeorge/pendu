@@ -30,3 +30,7 @@ $aLetters = [
 $aWords = file(SOURCE_NAME);
 $iIndexWord = rand(0, count($aWords));
 $sWord = strtolower(trim($aWords[$iIndexWord]));
+$iWordLength = strlen($sWord);
+for($i=0; $i < $iWordLength; $i++) {
+    $sHiddenWord = $sHiddenWord . "-";
+}
