@@ -1,0 +1,31 @@
+/* PHP Pendu
+ *
+ * /sass/settings/_fonts.scss - Global fonts variables
+ *
+ * coded by Quentin
+ */
+
+// Variables
+$montserratStack: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+// Montserrat
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/montserrat/montserrat-regular.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/montserrat/montserrat-semibold.otf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/montserrat/montserrat-bold.otf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}

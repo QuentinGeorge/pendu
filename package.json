@@ -1,0 +1,19 @@
+{
+  "name": "PHP_pendu",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Game pendu coded in php",
+  "author": "Quentin George",
+  "repository": {
+    "url": "git+https://github.com/QuentinGeorge/pendu",
+    "type": "git"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean-css": "^2.3.2",
+    "gulp-csscomb": "^3.0.8",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.0.0"
+  }
+}

@@ -1,0 +1,49 @@
+/* PHP Pendu
+ *
+ * /sass/styles.scss - Main stylesheet
+ *
+ * coded by Quentin
+ */
+
+// Settings - Variables globales
+@import "settings/colors";
+@import "settings/fonts";
+@import "settings/sizes";
+
+// Generic - Style de remise à zéro (reset, normalize…)
+@import "generic/meyer-reset";
+
+// Styles
+html {
+    font: 16px/1.25 $montserratStack;
+    background-color: $mainBackgroundColor;
+    color: $laborTextColor;
+    margin: 0 auto;
+}
+body {
+    margin: 1.5rem;
+    text-align: center;
+}
+img {
+    max-width: $imgWidth;
+}
+a {
+    text-decoration: none;
+}
+p, form, legend {
+    margin: 1rem;
+}
+div.win {
+    background-color: $winBackgroundColor;
+}
+div.lost {
+    background-color: $lostBackgroundColor;
+}
+@media(max-width: $mobileWidth){
+    body {
+        margin: 5%;
+    }
+    img {
+        max-width: 75%;
+    }
+}
