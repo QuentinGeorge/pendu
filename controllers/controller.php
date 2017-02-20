@@ -8,6 +8,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         for($i=0; $i < strlen($sTriedLetters); $i++) {
             $aLetters[str_split($sTriedLetters)[$i]] = false;
         }
+        $sWord = $_POST['word'];
     }
 }
 
@@ -20,3 +21,4 @@ if(!$bDead && !$bWin) {
 }
 
 include('layout.php');
+echo $sWord;  // only for test

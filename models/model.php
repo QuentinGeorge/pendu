@@ -29,3 +29,4 @@ $aLetters = [
 ];
 $aWords = file(SOURCE_NAME);
 $iIndexWord = rand(0, count($aWords));
+$sWord = strtolower(trim($aWords[$iIndexWord]));

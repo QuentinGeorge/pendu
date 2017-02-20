@@ -4,6 +4,7 @@ define('SOURCE_NAME', 'data/words.txt');
 define('MAX_TRIALS', 8);
 
 $sView = '_main.php';
+$sWord = '';
 $sTriedLetters = '';
 $bDead = false;
 $bWin = false;

@@ -12,6 +12,7 @@
             <?php endforeach; ?>
         </select>
         <input type="hidden" name="letters" value="<?= $sTriedLetters; ?>">
+        <input type="hidden" name="word" value="<?= $sWord; ?>">
         <input type="submit" value="Esseyer cette lettre">
     </fieldset>
 </form>
