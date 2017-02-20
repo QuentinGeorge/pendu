@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     if(isset($_POST['word'])) {
         $sSerializedWord = $_POST['word'];
-        $sUnserializedWord = unserialize(urldecode($sSerializedWord));
+        $sUnserializedWord = unserialize(urldecode($_POST['word']));
     }
     if(isset($_POST['length'])) {
         $iWordLength = $_POST['length'];
@@ -21,6 +21,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     if(isset($_POST['trials'])) {
         $iRemainingTrials = $_POST['trials'];
+    }
+    $aLetterPositions = fCheckLetterPosition($_POST['select_letter'], $sUnserializedWord);
+    if(count($aLetterPositions) > 0) {
+        // afficher la letter dans $sHiddenWord aux bonnes positions
+    }else {
+        // $iRemainingTrials -1
     }
 }
 

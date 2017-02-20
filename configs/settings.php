@@ -13,6 +13,7 @@ $bDead = false;
 $bWin = false;
 $aWords = [];
 $aLetters = [];
+$aLetterPositions = [];
 $iIndexWord = 0;
 $iRemainingTrials = MAX_TRIALS;
 $iWordLength = 0;

@@ -35,3 +35,16 @@ for($i=0; $i < $iWordLength; $i++) {
     $sHiddenWord .= "-";
 }
 $sSerializedWord = urlencode(serialize($sWord));
+
+function fCheckLetterPosition($letter, $word)
+{
+    $aPosition = [];
+    $aWordSplit = str_split($word);
+    for($i=0; $i < count($aWordSplit); $i++) {
+        if($aWordSplit[$i] === $letter) {
+            array_push($aPosition, $i);
+        }
+    }
+
+    return $aPosition;
+}
