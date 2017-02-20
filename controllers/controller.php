@@ -8,9 +8,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         for($i=0; $i < strlen($sTriedLetters); $i++) {
             $aLetters[str_split($sTriedLetters)[$i]] = false;
         }
-        $sWord = $_POST['word'];
-        $iWordLength = $_POST['lenght'];
+    }
+    if(isset($_POST['word'])) {
+        $sSerializedWord = $_POST['word'];
+        $sUnserializedWord = unserialize(urldecode($sSerializedWord));
+    }
+    if(isset($_POST['length'])) {
+        $iWordLength = $_POST['length'];
+    }
+    if(isset($_POST['hidden_word'])) {
         $sHiddenWord = $_POST['hidden_word'];
+    }
+    if(isset($_POST['trials'])) {
         $iRemainingTrials = $_POST['trials'];
     }
 }
@@ -24,4 +33,4 @@ if(!$bDead && !$bWin) {
 }
 
 include('layout.php');
-echo $sWord;  // only for test
+echo $sUnserializedWord;  // only for test

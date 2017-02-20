@@ -5,6 +5,8 @@ define('MAX_TRIALS', 8);
 
 $sView = '_main.php';
 $sWord = '';
+$sSerializedWord = '';
+$sUnserializedWord = '';
 $sHiddenWord = '';
 $sTriedLetters = '';
 $bDead = false;
