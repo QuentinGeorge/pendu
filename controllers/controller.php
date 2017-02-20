@@ -3,7 +3,7 @@ include('settings.php');
 
 if($_SERVER['REQUEST_METHOD'] == 'GET') {
     if(isset($_GET['letter'])) {
-        $sLetters = $sLetters . $_GET['letter'];
+        $sTriedLetters = $sTriedLetters . $_GET['letter'];
     }
 }
 
