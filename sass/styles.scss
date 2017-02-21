@@ -31,7 +31,13 @@ a {
     text-decoration: none;
 }
 p, form, legend {
-    margin: 1.5rem;
+    margin: 1rem;
+}
+div {
+    padding: 1rem 0;
+    p {
+        margin: 0 0 1rem 0;
+    }
 }
 div.win {
     background-color: $winBackgroundColor;

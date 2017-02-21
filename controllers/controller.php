@@ -34,12 +34,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-if(!$bDead && !$bWin) {
-    $sView = '_form.php';
-}else if($bDead && !$bWin) {
+if($iRemainingTrials === 0) {
     $sView = '_gameOver.php';
-}else {
+}else if($sUnserializedWord === $sHiddenWord) {
     $sView = '_gameWin.php';
+}else {
+    $sView = '_form.php';
 }
 
 include('layout.php');
