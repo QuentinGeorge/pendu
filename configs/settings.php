@@ -14,6 +14,7 @@ $bWin = false;
 $aWords = [];
 $aLetters = [];
 $aLetterPositions = [];
+$aHiddenWordSplited = [];
 $iIndexWord = 0;
 $iRemainingTrials = MAX_TRIALS;
 $iWordLength = 0;

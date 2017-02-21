@@ -24,9 +24,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     $aLetterPositions = fCheckLetterPosition($_POST['select_letter'], $sUnserializedWord);
     if(count($aLetterPositions) > 0) {
-        // afficher la letter dans $sHiddenWord aux bonnes positions
+        $aHiddenWordSplited = str_split($sHiddenWord);
+        foreach($aLetterPositions as $value) {
+            $aHiddenWordSplited[$value] = $_POST['select_letter'];
+        }
+        $sHiddenWord = implode($aHiddenWordSplited);
     }else {
-        // $iRemainingTrials -1
+        $iRemainingTrials -= 1;
     }
 }
 
