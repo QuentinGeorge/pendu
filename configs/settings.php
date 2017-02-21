@@ -13,6 +13,7 @@ $aWords = [];
 $aLetters = [];
 $aLetterPositions = [];
 $aHiddenWordSplited = [];
+$aErrors = [];
 $iIndexWord = 0;
 $iRemainingTrials = MAX_TRIALS;
 $iWordLength = 0;

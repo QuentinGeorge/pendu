@@ -36,15 +36,26 @@ for($i=0; $i < $iWordLength; $i++) {
 }
 $sSerializedWord = urlencode(serialize($sWord));
 
-function fCheckLetterPosition($letter, $word)
+function fCheckLetterPosition($sLetter, $sWord)
 {
     $aPosition = [];
-    $aWordSplit = str_split($word);
+    $aWordSplit = str_split($sWord);
     for($i=0; $i < count($aWordSplit); $i++) {
-        if($aWordSplit[$i] === $letter) {
+        if($aWordSplit[$i] === $sLetter) {
             array_push($aPosition, $i);
         }
     }
 
     return $aPosition;
+}
+
+function fCheckErrorIsInAlphabet($sLetter, $aAlphabet)
+{
+    foreach($aAlphabet as $key => $value) {
+        if ($key === $sLetter) {
+            return true;
+        }
+    }
+
+    return false;
 }
