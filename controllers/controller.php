@@ -23,15 +23,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     }else {
         $aErrors['select_letter'] = 'OOps, on dirait que vous esseyez de tricher. Les lettres sélectionnées sont absentes de la requête.';
     }
-    if(isset($_POST['word'])) {
-        if(is_string($_POST['word'])) {
-            $sSerializedWord = $_POST['word'];
-            $sUnserializedWord = unserialize(urldecode($_POST['word']));
+    if(isset($_POST['index'])) {
+        if(is_string($_POST['index'])) {
+            $iIndexWord = $_POST['index'];
+            $sWord = strtolower(trim($aWords[$iIndexWord]));
         }else {
-            $aErrors['word'] = 'Le mot a trouver n´est pas une chaine de caractères.';
+            $aErrors['index'] = 'Le mot a trouver n´est pas une chaine de caractères.';
         }
     }else {
-        $aErrors['word'] = 'OOps, on dirait que vous esseyez de tricher. Le mot a trouver est absent de la requête.';
+        $aErrors['index'] = 'OOps, on dirait que vous esseyez de tricher. Le mot a trouver est absent de la requête.';
     }
     if(isset($_POST['length'])) {
         if(is_numeric($_POST['length'])) {
@@ -61,7 +61,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $aErrors['trials'] = 'OOps, on dirait que vous esseyez de tricher. Le nombre d´essais restants est absent de la requête.';
     }
     if(count($aErrors) === 0) {
-        $aLetterPositions = fCheckLetterPosition($_POST['select_letter'], $sUnserializedWord);
+        $aLetterPositions = fCheckLetterPosition($_POST['select_letter'], $sWord);
         if(count($aLetterPositions) > 0) {
             $aHiddenWordSplited = str_split($sHiddenWord);
             foreach($aLetterPositions as $value) {
@@ -79,7 +79,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 if(count($aErrors) === 0) {
     if($iRemainingTrials === 0) {
         $sView = '_gameOver.php';
-    }else if($sUnserializedWord === $sHiddenWord) {
+    }else if($sWord === $sHiddenWord) {
         $sView = '_gameWin.php';
     }else {
         $sView = '_form.php';
@@ -87,4 +87,3 @@ if(count($aErrors) === 0) {
 }
 
 include('layout.php');
-// echo $sUnserializedWord;  // only for test
