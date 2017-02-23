@@ -26,25 +26,35 @@ body {
 }
 img {
     max-height: $imgHeight;
+    border-radius: 15px;
 }
 a {
     text-decoration: none;
+    color: #EEEEEE;
+    &:hover {
+        color: #CCCCCC;
+    }
 }
 p, form, legend {
     margin: 1rem;
 }
 div {
-    padding: 1rem 0;
+    padding: 1rem;
+    border-radius: 15px;
     p {
         margin: 0 0 1rem 0;
     }
 }
-div.win {
+.win {
     background-color: $winBackgroundColor;
 }
-div.lost {
+.lost {
     background-color: $lostBackgroundColor;
 }
+.word {
+    font-weight: bold;
+}
+
 @media(max-width: $mobileWidth){
     body {
         margin: 5%;
