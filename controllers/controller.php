@@ -33,15 +33,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     }else {
         $aErrors['index'] = 'OOps, on dirait que vous esseyez de tricher. Le mot a trouver est absent de la requête.';
     }
-    if(isset($_POST['length'])) {
-        if(is_numeric($_POST['length'])) {
-            $iWordLength = $_POST['length'];
-        }else {
-            $aErrors['length'] = 'La longeure du mot n´est pas un nombre.';
-        }
-    }else {
-        $aErrors['length'] = 'OOps, on dirait que vous esseyez de tricher. La longeure du mot est absente de la requête.';
-    }
     if(isset($_POST['hidden_word'])) {
         if(is_string($_POST['hidden_word'])) {
             $sHiddenWord = $_POST['hidden_word'];
