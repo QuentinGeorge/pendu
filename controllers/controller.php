@@ -6,9 +6,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(isset($_POST['select_letter']) && isset($_POST['letters'])) {
         if(is_string($_POST['select_letter']) && is_string($_POST['letters'])) {
             if(fCheckErrorIsInAlphabet($_POST['select_letter'], $aLetters) === true) {
-                $sTriedLetters = $_POST['letters'] . $_POST['select_letter'];
-                for($i=0; $i < strlen($sTriedLetters); $i++) {
-                    $aLetters[str_split($sTriedLetters)[$i]] = false;
+                $aLetters = unserialize(urldecode($_POST['letters']));
+                $aLetters[$_POST['select_letter']] = false;
+                $sSerializedLetters = urlencode(serialize($aLetters));
+                foreach($aLetters as $key => $value) {
+                    if($value === false) {
+                        $sTriedLetters .= $key;
+                    }
                 }
             }else {
                 $aErrors['select_letter'] = 'L´option sélectionnée n´est pas une lettre de l´alphabet.';

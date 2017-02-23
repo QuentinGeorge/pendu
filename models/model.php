@@ -35,6 +35,7 @@ for($i=0; $i < $iWordLength; $i++) {
     $sHiddenWord .= "-";
 }
 $sSerializedWord = urlencode(serialize($sWord));
+$sSerializedLetters = urlencode(serialize($aLetters));
 
 function fCheckLetterPosition($sLetter, $sWord)
 {
