@@ -1,43 +1,42 @@
 <?php
-$aLetters = [
-    'a' => true,
-    'b' => true,
-    'c' => true,
-    'd' => true,
-    'e' => true,
-    'f' => true,
-    'g' => true,
-    'h' => true,
-    'i' => true,
-    'j' => true,
-    'k' => true,
-    'l' => true,
-    'm' => true,
-    'n' => true,
-    'o' => true,
-    'p' => true,
-    'q' => true,
-    'r' => true,
-    's' => true,
-    't' => true,
-    'u' => true,
-    'v' => true,
-    'w' => true,
-    'x' => true,
-    'y' => true,
-    'z' => true,
-];
-$aWords = file(SOURCE_NAME);
-$iIndexWord = rand(0, count($aWords));
-$sWord = strtolower(trim($aWords[$iIndexWord]));
-$iWordLength = strlen($sWord);
-for($i=0; $i < $iWordLength; $i++) {
-    $sHiddenWord .= "-";
+function fGetLettersArray() {
+    return [
+        'a' => true,
+        'b' => true,
+        'c' => true,
+        'd' => true,
+        'e' => true,
+        'f' => true,
+        'g' => true,
+        'h' => true,
+        'i' => true,
+        'j' => true,
+        'k' => true,
+        'l' => true,
+        'm' => true,
+        'n' => true,
+        'o' => true,
+        'p' => true,
+        'q' => true,
+        'r' => true,
+        's' => true,
+        't' => true,
+        'u' => true,
+        'v' => true,
+        'w' => true,
+        'x' => true,
+        'y' => true,
+        'z' => true,
+    ];
 }
-$sSerializedLetters = urlencode(serialize($aLetters));
 
-function fCheckLetterPosition($sLetter, $sWord)
-{
+function fGetFileWordsArray() {
+    return @file(SOURCE_NAME)?:false;
+    // @ permet de gérer l'erreure nous même plustôt que d'afficher une erreure de php a notre utilisateur
+    // return le fichier si il existe sinon return false
+}
+
+function fCheckLetterPosition($sLetter, $sWord) {
     $aPosition = [];
     $aWordSplit = str_split($sWord);
     for($i=0; $i < count($aWordSplit); $i++) {
@@ -45,17 +44,14 @@ function fCheckLetterPosition($sLetter, $sWord)
             array_push($aPosition, $i);
         }
     }
-
     return $aPosition;
 }
 
-function fCheckErrorIsInAlphabet($sLetter, $aAlphabet)
-{
+function fCheckErrorIsInAlphabet($sLetter, $aAlphabet) {
     foreach($aAlphabet as $key => $value) {
         if ($key === $sLetter) {
             return true;
         }
     }
-
     return false;
 }
