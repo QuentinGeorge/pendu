@@ -1,15 +1,11 @@
 <?php
 if(isset($_POST['select_letter']) && isset($_POST['letters'])) {
     if(is_string($_POST['select_letter']) && is_string($_POST['letters'])) {
-        $aLetters = unserialize(urldecode($_POST['letters']));
+        $aLetters = fUnserializeLetters($_POST['letters']);
         if(fCheckErrorIsInAlphabet($_POST['select_letter'], $aLetters) === true) {
             $aLetters[$_POST['select_letter']] = false;
-            $sSerializedLetters = urlencode(serialize($aLetters));
-            foreach($aLetters as $key => $value) {
-                if($value === false) {
-                    $sTriedLetters .= $key;
-                }
-            }
+            $sSerializedLetters = fSerializeLetters($aLetters);
+            $sTriedLetters = fGetTriedLetters($aLetters);
         }else {
             $aErrors['select_letter'] = 'L´option sélectionnée n´est pas une lettre de l´alphabet.';
         }
@@ -22,7 +18,7 @@ if(isset($_POST['select_letter']) && isset($_POST['letters'])) {
 if(isset($_POST['index'])) {
     if(is_string($_POST['index'])) {
         $iIndexWord = $_POST['index'];
-        $sWord = strtolower(trim($aWords[$iIndexWord]));
+        $sWord = fGetWord($aWords, $iIndexWord);
         $iWordLength = strlen($sWord);
     }else {
         $aErrors['index'] = 'Le mot a trouver n´est pas une chaine de caractères.';
