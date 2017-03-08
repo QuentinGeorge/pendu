@@ -30,12 +30,12 @@ function fGetLettersArray() {
     ];
 }
 
-function fSerializeLetters($aLetters) {
-    return urlencode(serialize($aLetters));
+function fEncodeCookie($sCookie) {
+    return base64_encode(json_encode($sCookie));
 }
 
-function fUnserializeLetters($aLetters) {
-    return unserialize(urldecode($aLetters));
+function fDecodeCookie($sCookie) {
+    return json_decode(base64_decode($sCookie), true);
 }
 
 function fGetFileWordsArray() {
@@ -64,13 +64,4 @@ function fGetTriedLetters($aLetters) {
         }
     }
     return $sTriedLetters;
-}
-
-function fCheckErrorIsInAlphabet($sLetter, $aAlphabet) {
-    foreach($aAlphabet as $key => $value) {
-        if ($key === $sLetter) {
-            return true;
-        }
-    }
-    return false;
 }

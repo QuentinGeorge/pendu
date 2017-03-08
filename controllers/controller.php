@@ -6,14 +6,12 @@ if($aWords = fGetFileWordsArray()) {
         include('postController.php');
     }
 
-    if(count($aErrors) === 0) {
-        if($iRemainingTrials === 0) {
-            $sView = '_gameOver.php';
-        }elseif($sWord === $sHiddenWord) {
-            $sView = '_gameWin.php';
-        }else {
-            $sView = '_form.php';
-        }
+    if($iRemainingTrials === 0) {
+        $sView = '_gameOver.php';
+    }elseif($sWord === $sHiddenWord) {
+        $sView = '_gameWin.php';
+    }else {
+        $sView = '_form.php';
     }
 }else {
     die('Ooops, un problème est survenu lors de la récupération des mots.');

@@ -1,62 +1,33 @@
 <?php
-if(isset($_POST['select_letter']) && isset($_POST['letters'])) {
-    if(is_string($_POST['select_letter']) && is_string($_POST['letters'])) {
-        $sSelectedLetter = $_POST['select_letter'];
-        $aLetters = fUnserializeLetters($_POST['letters']);
-        if(fCheckErrorIsInAlphabet($sSelectedLetter, $aLetters) === true) {
-            $aLetters[$sSelectedLetter] = false;
-            $sSerializedLetters = fSerializeLetters($aLetters);
-            $sTriedLetters = fGetTriedLetters($aLetters);
-        }else {
-            $aErrors['select_letter'] = 'L´option sélectionnée n´est pas une lettre de l´alphabet.';
-        }
-    }else {
-        $aErrors['select_letter'] = 'Les lettres sélectionnées ne sont pas dans une chaine de caractères.';
-    }
-}else {
-    $aErrors['select_letter'] = 'OOps, on dirait que vous esseyez de tricher. Les lettres sélectionnées sont absentes de la requête.';
+if(!isset($_COOKIE['game_data'])) {
+    die('Les cookies doivent être activés sur votre machine pour que le jeu puisse fonctionner.');
 }
-if(isset($_POST['index'])) {
-    if(is_numeric($_POST['index'])) {
-        $iIndexWord = intval($_POST['index']);
-        $sWord = fGetWord($aWords, $iIndexWord);
-        $iWordLength = strlen($sWord);
-    }else {
-        $aErrors['index'] = 'L´index du mot a trouver n´est pas un nombre.';
+$aCookiesData = fDecodeCookie($_COOKIE['game_data']);
+$aLetters = $aCookiesData['aLetters'];
+
+$sSelectedLetter = $_POST['select_letter'];
+$aLetters[$sSelectedLetter] = false;
+$sTriedLetters = fGetTriedLetters($aLetters);
+
+$iIndexWord = intval($aCookiesData['iIndexWord']);
+$sWord = fGetWord($aWords, $iIndexWord);
+$iWordLength = strlen($sWord);
+
+$sHiddenWord = $aCookiesData['sHiddenWord'];
+
+$iRemainingTrials =  intval($aCookiesData['iRemainingTrials']);
+
+$bLetterFound = false;
+for($i = 0; $i < $iWordLength; $i++) {
+    $l = substr($sWord, $i, 1);
+    if($sSelectedLetter === $l) {
+        $bLetterFound = true;
+        $sHiddenWord = substr_replace($sHiddenWord, $l, $i, 1);
     }
-}else {
-    $aErrors['index'] = 'OOps, on dirait que vous esseyez de tricher. Le mot a trouver est absent de la requête.';
 }
-if(isset($_POST['hidden_word'])) {
-    if(is_string($_POST['hidden_word'])) {
-        $sHiddenWord = $_POST['hidden_word'];
-    }else {
-        $aErrors['hidden_word'] = 'Le mot avec les lettres démasquées n´est pas une chaine de caractères.';
-    }
-}else {
-    $aErrors['hidden_word'] = 'OOps, on dirait que vous esseyez de tricher. Le mot avec les lettres démasquées est absent de la requête.';
+if(!$bLetterFound) {
+    $iRemainingTrials -= 1;
 }
-if(isset($_POST['trials'])) {
-    if(is_numeric($_POST['trials'])) {
-        $iRemainingTrials = intval($_POST['trials']);
-    }else {
-        $aErrors['trials'] = 'Le nombre d´essais restants n´est pas un nombre.';
-    }
-}else {
-    $aErrors['trials'] = 'OOps, on dirait que vous esseyez de tricher. Le nombre d´essais restants est absent de la requête.';
-}
-if(count($aErrors) === 0) {
-    $bLetterFound = false;
-    for($i = 0; $i < $iWordLength; $i++) {
-        $l = substr($sWord, $i, 1);
-        if($sSelectedLetter === $l) {
-            $bLetterFound = true;
-            $sHiddenWord = substr_replace($sHiddenWord, $l, $i, 1);
-        }
-    }
-    if(!$bLetterFound) {
-        $iRemainingTrials -= 1;
-    }
-}else {
-    $sView = '_errors.php';
-}
+
+$aCookiesData = fEncodeCookie(compact('aLetters', 'iIndexWord', 'sHiddenWord', 'iRemainingTrials'));
+setcookie('game_data', $aCookiesData);
