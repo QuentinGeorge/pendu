@@ -5,13 +5,8 @@ define('REPLACEMENT_CHAR', '-');
 define('MAX_TRIALS', 8);
 
 $sView = '_main.php';
-$sWord = '';
 $sTriedLetters = '';
-$sHiddenWord = '';
 $sSelectedLetter = '';
-$aCookiesData = [];
 $aWords = [];
-$aLetters = [];
-$iIndexWord = 0;
-$iRemainingTrials = 0;
 $iWordLength = 0;
+$iIndexWord = 0;

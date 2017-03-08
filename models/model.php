@@ -30,14 +30,6 @@ function fGetLettersArray() {
     ];
 }
 
-function fEncodeCookie($sCookie) {
-    return base64_encode(json_encode($sCookie));
-}
-
-function fDecodeCookie($sCookie) {
-    return json_decode(base64_decode($sCookie), true);
-}
-
 function fGetFileWordsArray() {
     return @file(SOURCE_NAME)?:false;
     // @ permet de gérer l'erreure nous même plustôt que d'afficher une erreure de php a notre utilisateur

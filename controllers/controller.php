@@ -1,4 +1,5 @@
 <?php
+session_start();
 if($aWords = fGetFileWordsArray()) {
     if($_SERVER['REQUEST_METHOD'] === 'GET') {
         include('getController.php');
@@ -6,9 +7,9 @@ if($aWords = fGetFileWordsArray()) {
         include('postController.php');
     }
 
-    if($iRemainingTrials === 0) {
+    if($_SESSION['trials'] === 0) {
         $sView = '_gameOver.php';
-    }elseif($sWord === $sHiddenWord) {
+    }elseif($_SESSION['word'] === $_SESSION['hidden_word']) {
         $sView = '_gameWin.php';
     }else {
         $sView = '_form.php';
