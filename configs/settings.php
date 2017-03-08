@@ -9,6 +9,7 @@ $sWord = '';
 $sTriedLetters = '';
 $sHiddenWord = '';
 $sSerializedLetters = '';
+$sSelectedLetter = '';
 $aWords = [];
 $aLetters = [];
 $aLetterPositions = [];

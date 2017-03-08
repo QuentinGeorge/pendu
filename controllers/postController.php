@@ -1,9 +1,10 @@
 <?php
 if(isset($_POST['select_letter']) && isset($_POST['letters'])) {
     if(is_string($_POST['select_letter']) && is_string($_POST['letters'])) {
+        $sSelectedLetter = $_POST['select_letter'];
         $aLetters = fUnserializeLetters($_POST['letters']);
-        if(fCheckErrorIsInAlphabet($_POST['select_letter'], $aLetters) === true) {
-            $aLetters[$_POST['select_letter']] = false;
+        if(fCheckErrorIsInAlphabet($sSelectedLetter, $aLetters) === true) {
+            $aLetters[$sSelectedLetter] = false;
             $sSerializedLetters = fSerializeLetters($aLetters);
             $sTriedLetters = fGetTriedLetters($aLetters);
         }else {
@@ -16,12 +17,12 @@ if(isset($_POST['select_letter']) && isset($_POST['letters'])) {
     $aErrors['select_letter'] = 'OOps, on dirait que vous esseyez de tricher. Les lettres sélectionnées sont absentes de la requête.';
 }
 if(isset($_POST['index'])) {
-    if(is_string($_POST['index'])) {
-        $iIndexWord = $_POST['index'];
+    if(is_numeric($_POST['index'])) {
+        $iIndexWord = intval($_POST['index']);
         $sWord = fGetWord($aWords, $iIndexWord);
         $iWordLength = strlen($sWord);
     }else {
-        $aErrors['index'] = 'Le mot a trouver n´est pas une chaine de caractères.';
+        $aErrors['index'] = 'L´index du mot a trouver n´est pas un nombre.';
     }
 }else {
     $aErrors['index'] = 'OOps, on dirait que vous esseyez de tricher. Le mot a trouver est absent de la requête.';
@@ -37,7 +38,7 @@ if(isset($_POST['hidden_word'])) {
 }
 if(isset($_POST['trials'])) {
     if(is_numeric($_POST['trials'])) {
-        $iRemainingTrials = $_POST['trials'];
+        $iRemainingTrials = intval($_POST['trials']);
     }else {
         $aErrors['trials'] = 'Le nombre d´essais restants n´est pas un nombre.';
     }
@@ -45,14 +46,15 @@ if(isset($_POST['trials'])) {
     $aErrors['trials'] = 'OOps, on dirait que vous esseyez de tricher. Le nombre d´essais restants est absent de la requête.';
 }
 if(count($aErrors) === 0) {
-    $aLetterPositions = fCheckLetterPosition($_POST['select_letter'], $sWord);
-    if(count($aLetterPositions) > 0) {
-        $aHiddenWordSplited = str_split($sHiddenWord);
-        foreach($aLetterPositions as $value) {
-            $aHiddenWordSplited[$value] = $_POST['select_letter'];
+    $bLetterFound = false;
+    for($i = 0; $i < $iWordLength; $i++) {
+        $l = substr($sWord, $i, 1);
+        if($sSelectedLetter === $l) {
+            $bLetterFound = true;
+            $sHiddenWord = substr_replace($sHiddenWord, $l, $i, 1);
         }
-        $sHiddenWord = implode($aHiddenWordSplited);
-    }else {
+    }
+    if(!$bLetterFound) {
         $iRemainingTrials -= 1;
     }
 }else {
